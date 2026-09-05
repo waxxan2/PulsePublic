@@ -2656,3 +2656,28 @@ player.CharacterAdded:Connect(function()
     end
 end)
 
+
+local credits = window:AddTab("Credits")
+
+local title = credits:AddLabel("🔥 PULSE HUB V1")
+title.TextColor3 = Color3.fromRGB(255, 215, 0)
+
+local dev = credits:AddLabel("👤 Developer: WOZZY")
+dev.TextColor3 = Color3.fromRGB(255, 50, 50)
+
+credits:AddLabel("--------------------------")
+
+local thanks = credits:AddLabel("🤝 thank you: Halis & RuLing")
+thanks.TextColor3 = Color3.fromRGB(0, 255, 255)
+
+credits:AddLabel("--------------------------")
+
+credits:AddLabel("👇 My Discord Server Link Here")
+
+credits:AddButton("Discord Link", function()
+    setclipboard("https://discord.gg/wVF7ursHz")
+end)
+
+credits:AddLabel(" ")
+credits:AddLabel("==================================")
+
