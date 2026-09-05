@@ -2872,260 +2872,6 @@ end)
 
 local miscs = window:AddTab("Miscs")
 
-local miscellaneous1 = miscs:AddFolder("Miscellaneous 1")
-
-miscellaneous1:AddSwitch("Auto Punch", function(p55)
-  _G.FastPunch = p55
-
-  if p55 then
-    spawn(function()
-      while _G.FastPunch do
-        local localPlayer12 = game.Players.LocalPlayer
-        local character21 = localPlayer12.Character
-
-        if character21 and not character21:FindFirstChild("Punch") then
-          local punch7 = localPlayer12.Backpack:FindFirstChild("Punch")
-
-          if punch7 then
-            if punch7:FindFirstChild("attackTime") then
-              punch7.attackTime.Value = 0
-            end
-
-            character21.Humanoid:EquipTool(punch7)
-          end
-        elseif character21 and character21:FindFirstChild("Punch") then
-          local punch8 = character21:FindFirstChild("Punch")
-
-          if punch8:FindFirstChild("attackTime") then
-            punch8.attackTime.Value = 0
-          end
-        end
-
-        wait(0.1)
-      end
-    end)
-
-    spawn(function()
-      while _G.FastPunch do
-        local localPlayer13 = game.Players.LocalPlayer
-        localPlayer13.muscleEvent:FireServer("punch", "rightHand")
-        localPlayer13.muscleEvent:FireServer("punch", "leftHand")
-
-        local character22 = localPlayer13.Character
-
-        if character22 then
-          local punch9 = character22:FindFirstChild("Punch")
-
-          if punch9 then
-            punch9:Activate()
-          end
-        end
-
-        wait(0)
-      end
-    end)
-  else
-    local punch10 = game.Players.LocalPlayer.Character:FindFirstChild("Punch")
-
-    if punch10 then
-      if punch10:FindFirstChild("attackTime") then
-        punch10.attackTime.Value = 0.35
-      end
-
-      punch10.Parent = game.Players.LocalPlayer.Backpack
-    end
-
-    local punch11 = game.Players.LocalPlayer.Backpack:FindFirstChild("Punch")
-
-    if punch11 and punch11:FindFirstChild("attackTime") then
-      punch11.attackTime.Value = 0.35
-    end
-  end
-end)
-
-miscellaneous1:AddSwitch("Auto Weight", function(p56)
-  _G.FastWeight = p56
-
-  if p56 then
-    spawn(function()
-      while _G.FastWeight do
-        local localPlayer14 = game.Players.LocalPlayer
-        local character23 = localPlayer14.Character
-
-        if character23 and not character23:FindFirstChild("Weight") then
-          local weight3 = localPlayer14.Backpack:FindFirstChild("Weight")
-
-          if weight3 then
-            if weight3:FindFirstChild("repTime") then
-              weight3.repTime.Value = 0
-            end
-
-            character23.Humanoid:EquipTool(weight3)
-          end
-        elseif character23 and character23:FindFirstChild("Weight") then
-          local weight4 = character23:FindFirstChild("Weight")
-
-          if weight4:FindFirstChild("repTime") then
-            weight4.repTime.Value = 0
-          end
-        end
-
-        wait(0.1)
-      end
-    end)
-
-    spawn(function()
-      while _G.FastWeight do
-        players.LocalPlayer.muscleEvent:FireServer("rep")
-        task.wait(0)
-      end
-    end)
-  else
-    local weight5 = game.Players.LocalPlayer.Character:FindFirstChild("Weight")
-
-    if weight5 then
-      if weight5:FindFirstChild("repTime") then
-        weight5.repTime.Value = 1
-      end
-
-      weight5.Parent = game.Players.LocalPlayer.Backpack
-    end
-
-    local weight6 = game.Players.LocalPlayer.Backpack:FindFirstChild("Weight")
-
-    if weight6 and weight6:FindFirstChild("repTime") then
-      weight6.repTime.Value = 1
-    end
-  end
-end)
-
-miscellaneous1:AddSwitch("Auto Pushups", function(p57)
-  _G.FastPushups = p57
-
-  if p57 then
-    spawn(function()
-      while _G.FastPushups do
-        local localPlayer15 = game.Players.LocalPlayer
-        local character24 = localPlayer15.Character
-
-        if character24 and not character24:FindFirstChild("Pushups") then
-          local pushups3 = localPlayer15.Backpack:FindFirstChild("Pushups")
-
-          if pushups3 then
-            if pushups3:FindFirstChild("repTime") then
-              pushups3.repTime.Value = 0
-            end
-
-            character24.Humanoid:EquipTool(pushups3)
-          end
-        elseif character24 and character24:FindFirstChild("Pushups") then
-          local pushups4 = character24:FindFirstChild("Pushups")
-
-          if pushups4:FindFirstChild("repTime") then
-            pushups4.repTime.Value = 0
-          end
-        end
-
-        wait(0.1)
-      end
-    end)
-
-    spawn(function()
-      while _G.FastPushups do
-        players.LocalPlayer.muscleEvent:FireServer("rep")
-        task.wait(0)
-      end
-    end)
-  else
-    local pushups5 = game.Players.LocalPlayer.Character:FindFirstChild("Pushups")
-
-    if pushups5 then
-      if pushups5:FindFirstChild("repTime") then
-        pushups5.repTime.Value = 1
-      end
-
-      pushups5.Parent = game.Players.LocalPlayer.Backpack
-    end
-
-    local pushups6 = game.Players.LocalPlayer.Backpack:FindFirstChild("Pushups")
-
-    if pushups6 and pushups6:FindFirstChild("repTime") then
-      pushups6.repTime.Value = 1
-    end
-  end
-end)
-
-miscellaneous1:AddSwitch("Auto Handstands", function(p58)
-  _G.FastHandstands = p58
-
-  if p58 then
-    spawn(function()
-      while _G.FastHandstands do
-        local localPlayer16 = game.Players.LocalPlayer
-        local character25 = localPlayer16.Character
-
-        if character25 and not character25:FindFirstChild("Handstands") then
-          local handstands3 = localPlayer16.Backpack:FindFirstChild("Handstands")
-
-          if handstands3 then
-            if handstands3:FindFirstChild("repTime") then
-              handstands3.repTime.Value = 0
-            end
-
-            character25.Humanoid:EquipTool(handstands3)
-          end
-        elseif character25 and character25:FindFirstChild("Handstands") then
-          local handstands4 = character25:FindFirstChild("Handstands")
-
-          if handstands4:FindFirstChild("repTime") then
-            handstands4.repTime.Value = 0
-          end
-        end
-
-        wait(0.1)
-      end
-    end)
-
-    spawn(function()
-      while _G.FastHandstands do
-        players.LocalPlayer.muscleEvent:FireServer("rep")
-        task.wait(0)
-      end
-    end)
-  else
-    local handstands5 = game.Players.LocalPlayer.Character:FindFirstChild("Handstands")
-
-    if handstands5 then
-      if handstands5:FindFirstChild("repTime") then
-        handstands5.repTime.Value = 1
-      end
-
-      handstands5.Parent = game.Players.LocalPlayer.Backpack
-    end
-
-    local handstands6 = game.Players.LocalPlayer.Backpack:FindFirstChild("Handstands")
-
-    if handstands6 and handstands6:FindFirstChild("repTime") then
-      handstands6.repTime.Value = 1
-    end
-  end
-end)
-
-local miscellaneous2 = miscs:AddFolder("Miscellaneous 2")
-
-miscellaneous2:AddSwitch("Auto Spin Wheel", function(p59)
-  _G.AutoSpinWheel = p59
-
-  if p59 then
-    spawn(function()
-      while _G.AutoSpinWheel and wait(1) do
-        replicatedStorage.rEvents.openFortuneWheelRemote:InvokeServer(
-          "openFortuneWheel", replicatedStorage.fortuneWheelChances["Fortune Wheel"]
-        )
-      end
-    end)
-  end
-end)
 
 miscellaneous2:AddSwitch("Auto Claim Gifts", function(p60)
   _G.AutoClaimGifts = p60
@@ -3448,6 +3194,64 @@ miscellaneous3:AddSwitch("Jumpy Infinite", function(p72)
     })
   end
 end)
+
+local function f14()
+  local antiAFKGui = Instance.new("ScreenGui")
+  antiAFKGui.Name = "AntiAFKGui"
+  antiAFKGui.Parent = game.CoreGui
+
+  local textLabel = Instance.new("TextLabel")
+  textLabel.Parent = antiAFKGui
+  textLabel.Size = UDim2.new(0, 220, 0, 40)
+  textLabel.Position = UDim2.new(0.5, -110, 0.05, 0)
+  textLabel.BackgroundTransparency = 1
+  textLabel.Text = "ANTI AFK [Timer: 0s]"
+  textLabel.TextSize = 20
+  textLabel.Font = Enum.Font.GothamBold
+  textLabel.TextColor3 = Color3.new(0, 1, 0)
+
+  v82 = antiAFKGui
+  v83 = textLabel
+end
+
+local v84 = 0
+
+local function f15()
+  v84 = 0
+  local v85 = true
+
+  while v81 do
+    v84 = v84 + 1
+
+    if v83 then
+      v83.Text = "ANTI AFK [Timer: " .. v84 .. "s]"
+
+      if v85 then
+        v83.TextColor3 = Color3.new(0, 1, 0)
+      else
+        v83.TextColor3 = Color3.new(1, 0, 0)
+      end
+
+      v85 = not v85
+    end
+
+    virtualUser:CaptureController()
+    virtualUser:ClickButton2(Vector2.new())
+
+    task.wait(1)
+  end
+end
+
+fastFarm:AddSwitch("Anti AFK", function(p47)
+  v81 = p47
+
+  if p47 then
+    f14()
+    task.spawn(f15)
+  else
+    f13()
+  end
+end):Set(true)
 
 local addDropdown8 = miscellaneous3:AddDropdown("Change Time", function(p73)
   if p73 == "Night" then
