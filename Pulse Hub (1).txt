@@ -1949,7 +1949,7 @@ rebirths:AddSwitch("Auto Teleport to Muscle King", function(p40)
   end
 end, "Teletransporte continuo al Rey Músculo")
 
-local autoEquipTools = normalFarm:Add("Auto Equip Tools")
+local autoEquipTools = normalFarm:AddFolder("Auto Equip Tools")
 
 autoEquipTools:AddButton("Gamepass AutoLift", function()
   local v79 = game
