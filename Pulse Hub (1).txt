@@ -2631,6 +2631,8 @@ local function startNoclip()
     end)
 end
 
+Misc:AddSwatch(“⏰ Anti Afk”,
+
 local AntiAfkEnabled = false
 local VirtualUser = game:GetService("VirtualUser")
 
