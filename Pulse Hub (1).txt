@@ -2631,32 +2631,6 @@ local function startNoclip()
     end)
 end
 
-Misc:AddSwatch(“⏰ Anti Afk”,
-
-local AntiAfkEnabled = false
-local VirtualUser = game:GetService("VirtualUser")
-
--- 10 dakikada bir (600 saniye) tıklama döngüsü
-task.spawn(function()
-    while true do
-        task.wait(600)
-        if AntiAfkEnabled then
-            pcall(function()
-                VirtualUser:CaptureController()
-                VirtualUser:ClickButton2(Vector2.new(0, 0))
-            end)
-        end
-    end
-end)
-
--- UI Switch Tanımı
-Misc:AddSwatch(":alarm_clock: Anti Afk", function(Value)
-    AntiAfkEnabled = Value
-end)
-
-
-
-
 Misc:AddSwitch("👻 No Clip", function(bool)
     noclipEnabled = bool
     
