@@ -2631,6 +2631,120 @@ local function startNoclip()
     end)
 end
 
+Misc:AddSwitch(“⏰ Anti Afk”, function(Value)
+
+-- Oyuncu ve Servisler
+local players = game:GetService("Players")
+local runService = game:GetService("RunService")
+local virtualUser = game:GetService("VirtualUser")
+local vim = game:GetService("VirtualInputManager")
+local player = players.LocalPlayer
+
+-- Roblox AFK Engelleyici (20 dakika kuralını engeller)
+player.Idled:Connect(function()
+    virtualUser:CaptureController()
+    virtualUser:ClickButton2(Vector2.new())
+end)
+
+-- Önceki arayüz varsa kaldır (Çakışmayı önler)
+if player.PlayerGui:FindFirstChild("PulseAFKGui") then
+    player.PlayerGui.PulseAFKGui:Destroy()
+end
+
+-- GUI Oluşturma
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "PulseAFKGui"
+screenGui.ResetOnSpawn = false
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.Parent = player.PlayerGui
+
+-- Siyah Arka Plan (Tam Ekran)
+local bgFrame = Instance.new("Frame")
+bgFrame.Size = UDim2.new(1, 0, 1, 0)
+bgFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+bgFrame.BorderSizePixel = 0
+bgFrame.Parent = screenGui
+
+-- İçeriği Ortalamak İçin Ana Konteyner
+local centerContainer = Instance.new("Frame")
+centerContainer.Size = UDim2.new(0, 500, 0, 250)
+centerContainer.Position = UDim2.new(0.5, -250, 0.5, -125)
+centerContainer.BackgroundTransparency = 1
+centerContainer.Parent = bgFrame
+
+-- 1. PULSE // AFK Yazısı (Büyük)
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0, 60)
+titleLabel.Position = UDim2.new(0, 0, 0, 10)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.Text = "PULSE // AFK"
+titleLabel.TextColor3 = Color3.fromRGB(220, 50, 50) -- Kırmızı
+titleLabel.TextSize = 42
+titleLabel.Parent = centerContainer
+
+-- 2. Zaman Sayacı (Gün:Saat:Dakika:Saniye)
+local timerLabel = Instance.new("TextLabel")
+timerLabel.Size = UDim2.new(1, 0, 0, 60)
+timerLabel.Position = UDim2.new(0, 0, 0, 90)
+timerLabel.BackgroundTransparency = 1
+timerLabel.Font = Enum.Font.Code
+timerLabel.Text = "00:00:00:00"
+timerLabel.TextColor3 = Color3.fromRGB(240, 240, 240) -- Beyaz
+timerLabel.TextSize = 48
+timerLabel.Parent = centerContainer
+
+-- 3. MS ve FPS Göstergesi
+local statsLabel = Instance.new("TextLabel")
+statsLabel.Size = UDim2.new(1, 0, 0, 30)
+statsLabel.Position = UDim2.new(0, 0, 0, 170)
+statsLabel.BackgroundTransparency = 1
+statsLabel.Font = Enum.Font.Code
+statsLabel.Text = "MS: 0ms   |   FPS: 0"
+statsLabel.TextColor3 = Color3.fromRGB(120, 120, 120) -- Gri
+statsLabel.TextSize = 20
+statsLabel.Parent = centerContainer
+
+-- Sayaç, Performans ve 10 Dakikada Bir Tıklama Döngüsü
+local startTime = tick()
+local lastUpdate = 0
+local lastAutoClick = tick()
+local clickInterval = 600 -- 600 saniye = 10 dakika
+
+runService.RenderStepped:Connect(function(dt)
+    local currentTime = tick()
+    local elapsed = math.floor(currentTime - startTime)
+    
+    -- Zaman Hesaplamaları
+    local days = math.floor(elapsed / 86400)
+    local hours = math.floor((elapsed % 86400) / 3600)
+    local minutes = math.floor((elapsed % 3600) / 60)
+    local seconds = elapsed % 60
+    
+    timerLabel.Text = string.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds)
+    
+    -- 10 Dakikada Bir Ekrana Otomatik Tıklama Tetikleyicisi
+    if currentTime - lastAutoClick >= clickInterval then
+        lastAutoClick = currentTime
+        pcall(function()
+            -- Ekranın ortasına sol tık sinyali gönderir
+            local viewportSize = workspace.CurrentCamera.ViewportSize
+            vim:SendMouseButtonEvent(viewportSize.X / 2, viewportSize.Y / 2, 0, true, game, 0)
+            task.wait(0.1)
+            vim:SendMouseButtonEvent(viewportSize.X / 2, viewportSize.Y / 2, 0, false, game, 0)
+        end)
+    end
+    
+    -- FPS ve MS (Anlık performans)
+    if currentTime - lastUpdate >= 0.5 then 
+        local fps = math.floor(1 / dt)
+        local ms = math.floor(dt * 1000)
+        statsLabel.Text = string.format("MS: %dms   |   FPS: %d", ms, fps)
+        lastUpdate = currentTime
+    end
+end)
+
+
 Misc:AddSwitch("👻 No Clip", function(bool)
     noclipEnabled = bool
     
