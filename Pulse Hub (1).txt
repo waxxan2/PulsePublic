@@ -41,221 +41,6 @@ _G.window=window
 
 local normalFarm = window:AddTab("Normal Farm")
 
-local autoEquipTools = normalFarm:Add("Auto Equip Tools")
-
-autoEquipTools:AddButton("Gamepass AutoLift", function()
-  local v79 = game
-  local v80 = game
-  local gamepassIds = v79:GetService("ReplicatedStorage").gamepassIds
-  local localPlayer3 = v80:GetService("Players").LocalPlayer
-
-  for key21, value45 in pairs(gamepassIds:GetChildren()) do
-    local intValue2 = Instance.new("IntValue")
-    intValue2.Name = value45.Name
-    intValue2.Value = value45.Value
-    intValue2.Parent = localPlayer3.ownedGamepasses
-  end
-end, "Desbloquea el gamepass de AutoLift gratis")
-
-autoEquipTools:AddSwitch("Auto Weight", function(p41)
-  _G.AutoWeight = p41
-
-  if p41 then
-    local weight = game.Players.LocalPlayer.Backpack:FindFirstChild("Weight")
-
-    if weight then
-      game.Players.LocalPlayer.Character.Humanoid:EquipTool(weight)
-    end
-  else
-    local weight2 = game.Players.LocalPlayer.Character:FindFirstChild("Weight")
-
-    if weight2 then
-      weight2.Parent = game.Players.LocalPlayer.Backpack
-    end
-  end
-
-  task.spawn(function()
-    while _G.AutoWeight do
-      if not _G.AutoWeight then
-        break
-      end
-
-      players.LocalPlayer.muscleEvent:FireServer("rep")
-      task.wait(0.1)
-    end
-  end)
-end, "Levanta pesas automáticamente")
-
-autoEquipTools:AddSwitch("Auto Pushups", function(p42)
-  _G.AutoPushups = p42
-
-  if p42 then
-    local pushups = game.Players.LocalPlayer.Backpack:FindFirstChild("Pushups")
-
-    if pushups then
-      game.Players.LocalPlayer.Character.Humanoid:EquipTool(pushups)
-    end
-  else
-    local pushups2 = game.Players.LocalPlayer.Character:FindFirstChild("Pushups")
-
-    if pushups2 then
-      pushups2.Parent = game.Players.LocalPlayer.Backpack
-    end
-  end
-
-  task.spawn(function()
-    while _G.AutoPushups do
-      if not _G.AutoPushups then
-        break
-      end
-
-      players.LocalPlayer.muscleEvent:FireServer("rep")
-      task.wait(0.1)
-    end
-  end)
-end, "Haz flexiones automáticamente")
-
-autoEquipTools:AddSwitch("Auto Handstands", function(p43)
-  _G.AutoHandstands = p43
-
-  if p43 then
-    local handstands = game.Players.LocalPlayer.Backpack:FindFirstChild("Handstands")
-
-    if handstands then
-      game.Players.LocalPlayer.Character.Humanoid:EquipTool(handstands)
-    end
-  else
-    local handstands2 = game.Players.LocalPlayer.Character:FindFirstChild("Handstands")
-
-    if handstands2 then
-      handstands2.Parent = game.Players.LocalPlayer.Backpack
-    end
-  end
-
-  task.spawn(function()
-    while _G.AutoHandstands do
-      if not _G.AutoHandstands then
-        break
-      end
-
-      players.LocalPlayer.muscleEvent:FireServer("rep")
-      task.wait(0.1)
-    end
-  end)
-end, "Haz paradas de manos automáticamente")
-
-autoEquipTools:AddSwitch("Auto Situps", function(p44)
-  _G.AutoSitups = p44
-
-  if p44 then
-    local situps = game.Players.LocalPlayer.Backpack:FindFirstChild("Situps")
-
-    if situps then
-      game.Players.LocalPlayer.Character.Humanoid:EquipTool(situps)
-    end
-  else
-    local situps2 = game.Players.LocalPlayer.Character:FindFirstChild("Situps")
-
-    if situps2 then
-      situps2.Parent = game.Players.LocalPlayer.Backpack
-    end
-  end
-
-  task.spawn(function()
-    while _G.AutoSitups do
-      if not _G.AutoSitups then
-        break
-      end
-
-      players.LocalPlayer.muscleEvent:FireServer("rep")
-      task.wait(0.1)
-    end
-  end)
-end, "Haz abdominales automáticamente")
-
-autoEquipTools:AddSwitch("Auto Punch", function(p45)
-  _G.fastHitActive = p45
-
-  if p45 then
-    task.spawn(function()
-      while _G.fastHitActive do
-        if not _G.fastHitActive then
-          break
-        else
-          local localPlayer4 = game.Players.LocalPlayer
-          local punch4 = localPlayer4.Backpack:FindFirstChild("Punch")
-
-          if punch4 then
-            punch4.Parent = localPlayer4.Character
-
-            if punch4:FindFirstChild("attackTime") then
-              punch4.attackTime.Value = 0
-            end
-          end
-
-          task.wait(0.1)
-        end
-      end
-    end)
-
-    task.spawn(function()
-      while _G.fastHitActive do
-        if not _G.fastHitActive then
-          break
-        else
-          local localPlayer5 = game.Players.LocalPlayer
-          localPlayer5.muscleEvent:FireServer("punch", "rightHand")
-          localPlayer5.muscleEvent:FireServer("punch", "leftHand")
-
-          local character18 = localPlayer5.Character
-
-          if character18 then
-            local punch5 = character18:FindFirstChild("Punch")
-
-            if punch5 then
-              punch5:Activate()
-            end
-          end
-
-          task.wait(0)
-        end
-      end
-    end)
-  else
-    local punch6 = game.Players.LocalPlayer.Character:FindFirstChild("Punch")
-
-    if punch6 then
-      punch6.Parent = game.Players.LocalPlayer.Backpack
-    end
-  end
-end, "Golpea automáticamente")
-
-autoEquipTools:AddSwitch("Fast Tools", function(p46)
-  _G.FastTools = p46
-  local localPlayer6 = game.Players.LocalPlayer
-  local backpack4 = localPlayer6:WaitForChild("Backpack")
-
-  for index26, value46 in ipairs({
-    { "Punch", "attackTime", p46 and 0 or 0.35 },
-    { "Ground Slam", "attackTime", p46 and 0 or 6 }, { "Stomp", "attackTime", p46 and 0 or 7 },
-    { "Handstands", "repTime", p46 and 0 or 1 }, { "Pushups", "repTime", p46 and 0 or 1 },
-    { "Weight", "repTime", p46 and 0 or 1 }, { "Situps", "repTime", p46 and 0 or 1 },
-  }) do
-    local findFirstChild8 = backpack4:FindFirstChild(value46[1])
-
-    if findFirstChild8 and findFirstChild8:FindFirstChild(value46[2]) then
-      findFirstChild8[value46[2]].Value = value46[3]
-    end
-
-    local findFirstChild9 = localPlayer6.Character
-      and localPlayer6.Character:FindFirstChild(value46[1])
-
-    if findFirstChild9 and findFirstChild9:FindFirstChild(value46[2]) then
-      findFirstChild9[value46[2]].Value = value46[3]
-    end
-  end
-end, "Acelera todas las herramientas")
-
 local killing = window:AddTab("Kill")
 
 killing:AddLabel("Punch Animations").TextSize = 20
@@ -2163,6 +1948,136 @@ rebirths:AddSwitch("Auto Teleport to Muscle King", function(p40)
     end)
   end
 end, "Teletransporte continuo al Rey Músculo")
+
+local Farm = normalFarm:Add(“All tools”)
+
+-- Gerekli Servisler
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local localPlayer = Players.LocalPlayer
+
+-- 1. Gamepass AutoLift (Fonksiyon olarak doğrudan çalıştırılabilir)
+local function unlockAutoLift()
+	local gamepassIds = ReplicatedStorage:FindFirstChild("gamepassIds")
+	if gamepassIds then
+		for _, value45 in pairs(gamepassIds:GetChildren()) do
+			local intValue2 = Instance.new("IntValue")
+			intValue2.Name = value45.Name
+			intValue2.Value = value45.Value
+			intValue2.Parent = localPlayer:WaitForChild("ownedGamepasses")
+		end
+	end
+end
+unlockAutoLift()
+
+-- 2. Auto Weight (Açmak için _G.AutoWeight = true yapabilirsin)
+_G.AutoWeight = true
+task.spawn(function()
+	while _G.AutoWeight do
+		local weight = localPlayer.Backpack:FindFirstChild("Weight")
+		if weight and localPlayer.Character and localPlayer.Character:FindFirstChild("Humanoid") then
+			localPlayer.Character.Humanoid:EquipTool(weight)
+		end
+		localPlayer.muscleEvent:FireServer("rep")
+		task.wait(0.1)
+	end
+end)
+
+-- 3. Auto Pushups
+_G.AutoPushups = false -- İstiyorsan true yapabilirsin
+task.spawn(function()
+	while _G.AutoPushups do
+		local pushups = localPlayer.Backpack:FindFirstChild("Pushups")
+		if pushups and localPlayer.Character and localPlayer.Character:FindFirstChild("Humanoid") then
+			localPlayer.Character.Humanoid:EquipTool(pushups)
+		end
+		localPlayer.muscleEvent:FireServer("rep")
+		task.wait(0.1)
+	end
+end)
+
+-- 4. Auto Handstands
+_G.AutoHandstands = false
+task.spawn(function()
+	while _G.AutoHandstands do
+		local handstands = localPlayer.Backpack:FindFirstChild("Handstands")
+		if handstands and localPlayer.Character and localPlayer.Character:FindFirstChild("Humanoid") then
+			localPlayer.Character.Humanoid:EquipTool(handstands)
+		end
+		localPlayer.muscleEvent:FireServer("rep")
+		task.wait(0.1)
+	end
+end)
+
+-- 5. Auto Situps
+_G.AutoSitups = false
+task.spawn(function()
+	while _G.AutoSitups do
+		local situps = localPlayer.Backpack:FindFirstChild("Situps")
+		if situps and localPlayer.Character and localPlayer.Character:FindFirstChild("Humanoid") then
+			localPlayer.Character.Humanoid:EquipTool(situps)
+		end
+		localPlayer.muscleEvent:FireServer("rep")
+		task.wait(0.1)
+	end
+end)
+
+-- 6. Auto Punch (Hızlı Yumruk)
+_G.fastHitActive = true
+task.spawn(function()
+	while _G.fastHitActive do
+		local punch4 = localPlayer.Backpack:FindFirstChild("Punch")
+		if punch4 and localPlayer.Character then
+			punch4.Parent = localPlayer.Character
+			if punch4:FindFirstChild("attackTime") then
+				punch4.attackTime.Value = 0
+			end
+		end
+		task.wait(0.1)
+	end
+end)
+
+task.spawn(function()
+	while _G.fastHitActive do
+		localPlayer.muscleEvent:FireServer("punch", "rightHand")
+		localPlayer.muscleEvent:FireServer("punch", "leftHand")
+		
+		local character18 = localPlayer.Character
+		if character18 then
+			local punch5 = character18:FindFirstChild("Punch")
+			if punch5 then
+				punch5:Activate()
+			end
+		end
+		task.wait(0)
+	end
+end)
+
+-- 7. Fast Tools (Aletleri Hızlandırma)
+local function setFastTools(p46)
+	local backpack4 = localPlayer:WaitForChild("Backpack")
+	for _, value46 in ipairs({
+		{ "Punch", "attackTime", p46 and 0 or 0.35 },
+		{ "Ground Slam", "attackTime", p46 and 0 or 6 }, 
+		{ "Stomp", "attackTime", p46 and 0 or 7 },
+		{ "Handstands", "repTime", p46 and 0 or 1 }, 
+		{ "Pushups", "repTime", p46 and 0 or 1 },
+		{ "Weight", "repTime", p46 and 0 or 1 }, 
+		{ "Situps", "repTime", p46 and 0 or 1 },
+	}) do
+		local findFirstChild8 = backpack4:FindFirstChild(value46[1])
+		if findFirstChild8 and findFirstChild8:FindFirstChild(value46[2]) then
+			findFirstChild8[value46[2]].Value = value46[3]
+		end
+
+		local findFirstChild9 = localPlayer.Character and localPlayer.Character:FindFirstChild(value46[1])
+		if findFirstChild9 and findFirstChild9:FindFirstChild(value46[2]) then
+			findFirstChild9[value46[2]].Value = value46[3]
+		end
+	end
+end
+setFastTools(true)
+
 
 local teleport = window:AddTab("Teleport")
 
