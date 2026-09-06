@@ -2637,16 +2637,15 @@ Misc:AddSwitch(“⏰ Anti Afk”, function(Value)
 local players = game:GetService("Players")
 local runService = game:GetService("RunService")
 local virtualUser = game:GetService("VirtualUser")
-local vim = game:GetService("VirtualInputManager")
 local player = players.LocalPlayer
 
--- Roblox AFK Engelleyici (20 dakika kuralını engeller)
+-- Roblox'un standart 20 dk AFK atmasını engeller
 player.Idled:Connect(function()
     virtualUser:CaptureController()
     virtualUser:ClickButton2(Vector2.new())
 end)
 
--- Önceki arayüz varsa kaldır (Çakışmayı önler)
+-- Eski GUI kalıntısı varsa temizle
 if player.PlayerGui:FindFirstChild("PulseAFKGui") then
     player.PlayerGui.PulseAFKGui:Destroy()
 end
@@ -2705,7 +2704,7 @@ statsLabel.TextColor3 = Color3.fromRGB(120, 120, 120) -- Gri
 statsLabel.TextSize = 20
 statsLabel.Parent = centerContainer
 
--- Sayaç, Performans ve 10 Dakikada Bir Tıklama Döngüsü
+-- Döngü ve 10 Dakikada Bir Tıklama (VirtualUser kullanarak)
 local startTime = tick()
 local lastUpdate = 0
 local lastAutoClick = tick()
@@ -2723,19 +2722,18 @@ runService.RenderStepped:Connect(function(dt)
     
     timerLabel.Text = string.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds)
     
-    -- 10 Dakikada Bir Ekrana Otomatik Tıklama Tetikleyicisi
+     -- 10 Dakikada Bir Güvenli Tıklama (VirtualUser ile)
     if currentTime - lastAutoClick >= clickInterval then
         lastAutoClick = currentTime
         pcall(function()
-            -- Ekranın ortasına sol tık sinyali gönderir
-            local viewportSize = workspace.CurrentCamera.ViewportSize
-            vim:SendMouseButtonEvent(viewportSize.X / 2, viewportSize.Y / 2, 0, true, game, 0)
+            virtualUser:CaptureController()
+            virtualUser:Button1Down(Vector2.new(0,0))
             task.wait(0.1)
-            vim:SendMouseButtonEvent(viewportSize.X / 2, viewportSize.Y / 2, 0, false, game, 0)
+            virtualUser:Button1Up(Vector2.new(0,0))
         end)
     end
     
-    -- FPS ve MS (Anlık performans)
+    -- FPS ve MS
     if currentTime - lastUpdate >= 0.5 then 
         local fps = math.floor(1 / dt)
         local ms = math.floor(dt * 1000)
@@ -2743,6 +2741,7 @@ runService.RenderStepped:Connect(function(dt)
         lastUpdate = currentTime
     end
 end)
+
 
 
 Misc:AddSwitch("👻 No Clip", function(bool)
