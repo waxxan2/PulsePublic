@@ -2590,6 +2590,38 @@ Misc:AddSwitch("⬆️ Infinite Jump", function(state)
     end)
 end)
 
+-- Değişkenler
+local antiAfkRunning = false
+local vu = game:GetService("VirtualUser")
+
+-- AFK Engelleyici Fonksiyon
+task.spawn(function()
+    while true do
+        task.wait(600) -- 10 dakika (600 saniye)
+        if antiAfkRunning then
+            pcall(function()
+                -- Ekrana rastgele bir noktadan tıklar (Anti-AFK tetikleyici)
+                vu:CaptureController()
+                vu:ClickButton1(Vector2.new(100, 100))
+            end)
+            print("[Anti-AFK]: 10 dakikalık hareketsizlik önlendi!")
+        end
+    end
+end)
+
+
+-- Kütüphane / UI Entegrasyonu
+Misc:AddSwatch("⏰ Anti Afk", function(Value)
+    antiAfkRunning = Value
+    
+    -- Kullanıcıya görsel geri bildirim (Notification örneği)
+    if Value then
+        print("Anti-AFK Modu Aktif (Her 10 dakikada bir tıklayacak)")
+        -- Buraya UI kütüphanenin bildirim fonksiyonunu ekleyebilirsin (Örn: Library:Notify)
+    else
+        print("Anti-AFK Modu Deaktif")
+    end
+end)
 
 
 Misc:AddSwitch("🧱 Anti Knockback", function(Value)
