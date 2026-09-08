@@ -2241,7 +2241,7 @@ end, "Acelera todas las herramientas")
 
 local teleport = window:AddTab("Teleport")
 
-teleport:AddButton("🏠 Spawn", function()
+teleport:AddButton(" Spawn", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2254,7 +2254,7 @@ teleport:AddButton("🏠 Spawn", function()
     })
 end)
 
-teleport:AddButton("🔮 Secret Area", function()
+teleport:AddButton(" Secret Area", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2267,7 +2267,7 @@ teleport:AddButton("🔮 Secret Area", function()
     })
 end)
 
-teleport:AddButton("🏝️ Tiny Island", function()
+teleport:AddButton(" Tiny Island", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2280,7 +2280,7 @@ teleport:AddButton("🏝️ Tiny Island", function()
     })
 end)
 
-teleport:AddButton("❄️ Frozen Island", function()
+teleport:AddButton(" Frozen Island", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2293,7 +2293,7 @@ teleport:AddButton("❄️ Frozen Island", function()
     })
 end)
 
-teleport:AddButton("⚡ Mythical Island", function()
+teleport:AddButton(" Mythical Island", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2306,7 +2306,7 @@ teleport:AddButton("⚡ Mythical Island", function()
     })
 end)
 
-teleport:AddButton("🔥 Hell Island", function()
+teleport:AddButton(" Hell Island", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2319,7 +2319,7 @@ teleport:AddButton("🔥 Hell Island", function()
     })
 end)
 
-teleport:AddButton("🛡️ Legend Island", function()
+teleport:AddButton(" Legend Island", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2332,7 +2332,7 @@ teleport:AddButton("🛡️ Legend Island", function()
     })
 end)
 
-teleport:AddButton("👑 Muscle King", function()
+teleport:AddButton(" Muscle King", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2345,7 +2345,7 @@ teleport:AddButton("👑 Muscle King", function()
     })
 end)
 
-teleport:AddButton("🌴 Jungle Island", function()
+teleport:AddButton(" Jungle Island", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2358,7 +2358,7 @@ teleport:AddButton("🌴 Jungle Island", function()
     })
 end)
 
-teleport:AddButton("⚙️ Industrial Gym", function()
+teleport:AddButton(" Industrial Gym", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2374,7 +2374,7 @@ end)
 teleport:AddLabel("----------------------------------------")
 
 -- Brawl
-teleport:AddButton("⚔️ Brawl Regular", function()
+teleport:AddButton(" Brawl Regular", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2387,7 +2387,7 @@ teleport:AddButton("⚔️ Brawl Regular", function()
     })
 end)
 
-teleport:AddButton("🏜️ Brawl Desert", function()
+teleport:AddButton(" Brawl Desert", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2400,7 +2400,7 @@ teleport:AddButton("🏜️ Brawl Desert", function()
     })
 end)
 
-teleport:AddButton("🌋 Brawl Lava", function()
+teleport:AddButton(" Brawl Lava", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -2678,136 +2678,6 @@ Misc:AddSwitch("⬆️ Infinite Jump", function(state)
             end
         end
     end)
-end)
-
-Misc:AddSwitch("⏳ Anti Afk", function(Value)
-    afkActive = Value
-    
-    local Player = game:GetService("Players").LocalPlayer
-    local PlayerGui = Player:FindFirstChildOfClass("PlayerGui")
-    
-    if Value then
-        if PlayerGui:FindFirstChild("Syniox_GUI") then 
-            PlayerGui.Syniox_GUI:Destroy() 
-        end
-
-        local TweenService = game:GetService("TweenService")
-        local Stats = game:GetService("Stats")
-        local RunService = game:GetService("RunService")
-
-        local ScreenGui = Instance.new("ScreenGui", PlayerGui)
-        ScreenGui.Name = "Syniox_GUI"
-
-        local MainFrame = Instance.new("Frame", ScreenGui)
-        MainFrame.Size = UDim2.new(0, 220, 0, 140) -- Kalın ve kısa boyut
-        -- Çark simgesinin hemen altında, sağ üst tarafta konumlandırıldı
-        MainFrame.Position = UDim2.new(1, -235, 0, 85)
-        MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-        MainFrame.Active = true
-        MainFrame.Draggable = true
-        Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 10)
-        local Stroke = Instance.new("UIStroke", MainFrame)
-        Stroke.Color = Color3.fromRGB(40, 40, 40)
-        Stroke.Thickness = 3
-
-        local Title = Instance.new("TextLabel", MainFrame)
-        Title.Size = UDim2.new(1, -40, 0, 35)
-        Title.Position = UDim2.new(0, 15, 0, 0)
-        Title.Text = "PULSE // AFK"
-        Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-        Title.Font = Enum.Font.GothamBold
-        Title.TextSize = 13
-        Title.TextXAlignment = Enum.TextXAlignment.Left
-        Title.BackgroundTransparency = 1
-
-        local ToggleBtn = Instance.new("TextButton", MainFrame)
-        ToggleBtn.Size = UDim2.new(0, 25, 0, 25)
-        ToggleBtn.Position = UDim2.new(1, -35, 0, 5)
-        ToggleBtn.Text = "-"
-        ToggleBtn.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-        ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-        Instance.new("UICorner", ToggleBtn).CornerRadius = UDim.new(0, 6)
-
-        local StatContainer = Instance.new("Frame", MainFrame)
-        StatContainer.Size = UDim2.new(1, -20, 0, 70)
-        StatContainer.Position = UDim2.new(0, 10, 0, 35)
-        StatContainer.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-        Instance.new("UICorner", StatContainer).CornerRadius = UDim.new(0, 6)
-
-        local function CreateTxt(text, pos)
-            local lbl = Instance.new("TextLabel", StatContainer)
-            lbl.Size = UDim2.new(1, 0, 0, 22)
-            lbl.Position = pos
-            lbl.Text = text
-            lbl.TextColor3 = Color3.fromRGB(200, 200, 200)
-            lbl.Font = Enum.Font.GothamSemibold
-            lbl.TextSize = 12
-            lbl.TextXAlignment = Enum.TextXAlignment.Left
-            lbl.BackgroundTransparency = 1
-            return lbl
-        end
-
-        local TxtTime = CreateTxt("  ⏳ 00:00:00", UDim2.new(0,0,0,2))
-        local TxtFPS  = CreateTxt("  🚀 FPS: --", UDim2.new(0,0,0,24))
-        local TxtMS   = CreateTxt("  📡 MS: --", UDim2.new(0,0,0,46))
-
-        local BoostBtn = Instance.new("TextButton", MainFrame)
-        BoostBtn.Size = UDim2.new(0, 200, 0, 26)
-        BoostBtn.Position = UDim2.new(0.5, -100, 0, 108)
-        BoostBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        BoostBtn.Text = "FPS BOOST"
-        BoostBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
-        BoostBtn.Font = Enum.Font.GothamBold
-        BoostBtn.TextSize = 12
-        Instance.new("UICorner", BoostBtn).CornerRadius = UDim.new(0, 6)
-
-        local isMinimized = false
-        ToggleBtn.MouseButton1Click:Connect(function()
-            isMinimized = not isMinimized
-            local targetSize = isMinimized and UDim2.new(0, 220, 0, 35) or UDim2.new(0, 220, 0, 140)
-            
-            TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = targetSize}):Play()
-            
-            StatContainer.Visible = not isMinimized
-            BoostBtn.Visible = not isMinimized
-            ToggleBtn.Text = isMinimized and "+" or "-"
-        end)
-
-        BoostBtn.MouseButton1Down:Connect(function()
-            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 190, 0, 24)}):Play()
-        end)
-
-        BoostBtn.MouseButton1Up:Connect(function()
-            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 200, 0, 26)}):Play()
-            for _, v in pairs(workspace:GetDescendants()) do
-                if v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Fire") or v:IsA("Smoke") then v:Destroy() end
-            end
-        end)
-
-        local VirtualUser = game:GetService("VirtualUser")
-        local idledConn = Player.Idled:Connect(function() 
-            VirtualUser:CaptureController()
-            VirtualUser:ClickButton2(Vector2.new()) 
-        end)
-
-        local start = os.time()
-        task.spawn(function()
-            while afkActive do
-                task.wait(0.5)
-                if not isMinimized and MainFrame.Parent then
-                    local d = os.time() - start
-                    TxtTime.Text = string.format("  ⏳ %02d:%02d:%02d", math.floor(d/3600), math.floor((d%3600)/60), d%60)
-                    TxtFPS.Text = "  🚀 FPS: " .. math.floor(1 / RunService.RenderStepped:Wait())
-                    TxtMS.Text = "  📡 MS: " .. math.floor(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
-                end
-            end
-            if idledConn then idledConn:Disconnect() end
-        end)
-    else
-        if PlayerGui:FindFirstChild("Syniox_GUI") then
-            PlayerGui.Syniox_GUI:Destroy()
-        end
-    end
 end)
 
 
