@@ -1951,18 +1951,16 @@ end, "Teletransporte continuo al Rey Músculo")
 local autoEquipTools = normalFarm:AddFolder("Auto Equip Tools")
 
 autoEquipTools:AddButton("Gamepass AutoLift", function()
-  local v79 = game
-  local v80 = game
-  local gamepassIds = v79:GetService("ReplicatedStorage").gamepassIds
-  local localPlayer3 = v80:GetService("Players").LocalPlayer
+   local gamepassFolder = game:GetService("ReplicatedStorage").gamepassIds
+    local player = game:GetService("Players").LocalPlayer
+    for _, gamepass in pairs(gamepassFolder:GetChildren()) do
+        local value = Instance.new("IntValue")
+        value.Name = gamepass.Name
+        value.Value = gamepass.Value
+        value.Parent = player.ownedGamepasses
+    end
+end, "🔓 Unlock AutoLift Pass")
 
-  for key21, value45 in pairs(gamepassIds:GetChildren()) do
-    local intValue2 = Instance.new("IntValue")
-    intValue2.Name = value45.Name
-    intValue2.Value = value45.Value
-    intValue2.Parent = localPlayer3.ownedGamepasses
-  end
-end, "Desbloquea el gamepass de AutoLift gratis")
 
 autoEquipTools:AddSwitch("Auto Weight", function(p41)
   _G.AutoWeight = p41
