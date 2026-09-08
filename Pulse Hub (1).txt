@@ -2608,6 +2608,58 @@ task.spawn(function()
     end
 end)
 
+Misc:AddSwitch(“⏰ Anti Afk”, function(Value)
+
+       -- 💤 Anti-AFK Core
+        local vu = game:GetService('VirtualUser')
+        game.Players.LocalPlayer.Idled:Connect(function()
+            vu:CaptureController()
+            vu:ClickButton2(Vector2.new())
+        end)
+
+        -- ⚡ FPS & Ping
+        local RunService = game:GetService("RunService")
+        local sec = tick()
+        local FPS = {}
+        RunService.RenderStepped:Connect(function()
+            local fr = tick()
+            for i=#FPS,1,-1 do FPS[i+1] = (FPS[i]>=fr-1) and FPS[i] or nil end
+            FPS[1] = fr
+            local fps = math.floor((tick()-sec>=1 and #FPS) or (#FPS/(tick()-sec)))
+            fpslabel.Text = fps
+        end)
+
+        spawn(function()
+            while getgenv().AntiAfkExecuted do
+                wait(1)
+                local ping = math.floor(tonumber(game:GetService("Stats"):FindFirstChild("PerformanceStats").Ping:GetValue()))
+                pinglabel.Text = ping
+            end
+        end)
+
+        -- ⏱️ Timer
+        local saniye, dakika, saat = 0,0,0
+        getgenv().zamanbaslaticisi = true
+        spawn(function()
+            while getgenv().zamanbaslaticisi do
+                saniye = saniye + 1
+                wait(1)
+                if saniye>=60 then saniye=0;dakika=dakika+1 end
+                if dakika>=60 then dakika=0;saat=saat+1 end
+                timerlabel.Text = saat..":"..dakika..":"..saniye
+            end
+        end)
+    else
+        -- ❌ DESACTIVAR ANTI AFK
+        getgenv().AntiAfkExecuted = false
+        getgenv().zamanbaslaticisi = false
+        if game.CoreGui:FindFirstChild("thisoneissocoldww") then
+            game.CoreGui.thisoneissocoldww:Destroy()
+        end
+    end
+end)
+
+
 
 Misc:AddSwitch("🧱 Anti Knockback", function(Value)
     if Value then
