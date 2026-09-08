@@ -2608,8 +2608,8 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         ScreenGui.Name = "Syniox_GUI"
 
         local MainFrame = Instance.new("Frame", ScreenGui)
-        MainFrame.Size = UDim2.new(0, 190, 0, 160) -- Boyu daha da kısaltıldı
-        MainFrame.Position = UDim2.new(-0.3, 0, 0.4, 0)
+        MainFrame.Size = UDim2.new(0, 220, 0, 140) -- Daha kalın (geniş) ve daha kısa yapıldı
+        MainFrame.Position = UDim2.new(0.5, -110, 0.5, -70) -- Doğrudan ortada başlayacak şekilde ayarlandı
         MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
         MainFrame.Active = true
         MainFrame.Draggable = true
@@ -2637,14 +2637,14 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         Instance.new("UICorner", ToggleBtn).CornerRadius = UDim.new(0, 6)
 
         local StatContainer = Instance.new("Frame", MainFrame)
-        StatContainer.Size = UDim2.new(1, -20, 0, 78) -- İç kutu kısaltıldı
+        StatContainer.Size = UDim2.new(1, -20, 0, 70) -- İç kutu yeni boyuta uyarlandı
         StatContainer.Position = UDim2.new(0, 10, 0, 35)
         StatContainer.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
         Instance.new("UICorner", StatContainer).CornerRadius = UDim.new(0, 6)
 
         local function CreateTxt(text, pos)
             local lbl = Instance.new("TextLabel", StatContainer)
-            lbl.Size = UDim2.new(1, 0, 0, 26)
+            lbl.Size = UDim2.new(1, 0, 0, 22)
             lbl.Position = pos
             lbl.Text = text
             lbl.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -2655,24 +2655,24 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
             return lbl
         end
 
-        local TxtTime = CreateTxt("  ⏳ 00:00:00", UDim2.new(0,0,0,0))
-        local TxtFPS  = CreateTxt("  🚀 FPS: --", UDim2.new(0,0,0,26))
-        local TxtMS   = CreateTxt("  📡 MS: --", UDim2.new(0,0,0,52))
+        local TxtTime = CreateTxt("  ⏳ 00:00:00", UDim2.new(0,0,0,2))
+        local TxtFPS  = CreateTxt("  🚀 FPS: --", UDim2.new(0,0,0,24))
+        local TxtMS   = CreateTxt("  📡 MS: --", UDim2.new(0,0,0,46))
 
         local BoostBtn = Instance.new("TextButton", MainFrame)
-        BoostBtn.Size = UDim2.new(0, 170, 0, 30)
-        BoostBtn.Position = UDim2.new(0.5, -85, 0, 120) -- Yeni boyuta göre konumlandırıldı
+        BoostBtn.Size = UDim2.new(0, 200, 0, 26) -- Kalınlığa göre buton genişletildi
+        BoostBtn.Position = UDim2.new(0.5, -100, 0, 108) -- Konumu alt kısma sabitlendi
         BoostBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         BoostBtn.Text = "FPS BOOST"
         BoostBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
         BoostBtn.Font = Enum.Font.GothamBold
-        BoostBtn.TextSize = 13
+        BoostBtn.TextSize = 12
         Instance.new("UICorner", BoostBtn).CornerRadius = UDim.new(0, 6)
 
         local isMinimized = false
         ToggleBtn.MouseButton1Click:Connect(function()
             isMinimized = not isMinimized
-            local targetSize = isMinimized and UDim2.new(0, 190, 0, 35) or UDim2.new(0, 190, 0, 160)
+            local targetSize = isMinimized and UDim2.new(0, 220, 0, 35) or UDim2.new(0, 220, 0, 140)
             
             TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = targetSize}):Play()
             
@@ -2682,11 +2682,11 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         end)
 
         BoostBtn.MouseButton1Down:Connect(function()
-            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 160, 0, 28)}):Play()
+            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 190, 0, 24)}):Play()
         end)
 
         BoostBtn.MouseButton1Up:Connect(function()
-            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 170, 0, 30)}):Play()
+            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 200, 0, 26)}):Play()
             for _, v in pairs(workspace:GetDescendants()) do
                 if v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Fire") or v:IsA("Smoke") then v:Destroy() end
             end
@@ -2711,8 +2711,6 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
             end
             if idledConn then idledConn:Disconnect() end
         end)
-
-        TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Position = UDim2.new(0.02, 0, 0.4, 0)}):Play()
     else
         if PlayerGui:FindFirstChild("Syniox_GUI") then
             PlayerGui.Syniox_GUI:Destroy()
