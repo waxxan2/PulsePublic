@@ -1453,7 +1453,6 @@ pets:AddSwitch("📫 Auto Trade", function(state)
     end)
 end)
 
-
 local Rock = window:AddTab("Rock")
 
 function gettool()
