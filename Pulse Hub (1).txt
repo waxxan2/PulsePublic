@@ -2608,20 +2608,20 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         ScreenGui.Name = "Syniox_GUI"
 
         local MainFrame = Instance.new("Frame", ScreenGui)
-        MainFrame.Size = UDim2.new(0, 190, 0, 185) -- Boyu küçültüldü
+        MainFrame.Size = UDim2.new(0, 190, 0, 160) -- Boyu daha da kısaltıldı
         MainFrame.Position = UDim2.new(-0.3, 0, 0.4, 0)
-        MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Siyah yapıldı
+        MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
         MainFrame.Active = true
         MainFrame.Draggable = true
         Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 10)
         local Stroke = Instance.new("UIStroke", MainFrame)
-        Stroke.Color = Color3.fromRGB(40, 40, 40) -- Koyu siyah uyumlu bir çerçeve rengi (İstersen Color3.fromRGB(160, 0, 0) yapabilirsin)
-        Stroke.Thickness = 3 -- Kalınlığı biraz artırıldı
+        Stroke.Color = Color3.fromRGB(40, 40, 40)
+        Stroke.Thickness = 3
 
         local Title = Instance.new("TextLabel", MainFrame)
-        Title.Size = UDim2.new(1, -40, 0, 40)
+        Title.Size = UDim2.new(1, -40, 0, 35)
         Title.Position = UDim2.new(0, 15, 0, 0)
-        Title.Text = "SYNIOX | AFK"
+        Title.Text = "PULSE // AFK"
         Title.TextColor3 = Color3.fromRGB(255, 255, 255)
         Title.Font = Enum.Font.GothamBold
         Title.TextSize = 13
@@ -2630,49 +2630,49 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
 
         local ToggleBtn = Instance.new("TextButton", MainFrame)
         ToggleBtn.Size = UDim2.new(0, 25, 0, 25)
-        ToggleBtn.Position = UDim2.new(1, -35, 0, 7)
+        ToggleBtn.Position = UDim2.new(1, -35, 0, 5)
         ToggleBtn.Text = "-"
-        ToggleBtn.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Siyah tonu
+        ToggleBtn.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
         ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
         Instance.new("UICorner", ToggleBtn).CornerRadius = UDim.new(0, 6)
 
         local StatContainer = Instance.new("Frame", MainFrame)
-        StatContainer.Size = UDim2.new(1, -20, 0, 90)
-        StatContainer.Position = UDim2.new(0, 10, 0, 40)
-        StatContainer.BackgroundColor3 = Color3.fromRGB(10, 10, 10) -- Siyah tonu
+        StatContainer.Size = UDim2.new(1, -20, 0, 78) -- İç kutu kısaltıldı
+        StatContainer.Position = UDim2.new(0, 10, 0, 35)
+        StatContainer.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
         Instance.new("UICorner", StatContainer).CornerRadius = UDim.new(0, 6)
 
         local function CreateTxt(text, pos)
             local lbl = Instance.new("TextLabel", StatContainer)
-            lbl.Size = UDim2.new(1, 0, 0, 30)
+            lbl.Size = UDim2.new(1, 0, 0, 26)
             lbl.Position = pos
             lbl.Text = text
             lbl.TextColor3 = Color3.fromRGB(200, 200, 200)
             lbl.Font = Enum.Font.GothamSemibold
-            lbl.TextSize = 13
+            lbl.TextSize = 12
             lbl.TextXAlignment = Enum.TextXAlignment.Left
             lbl.BackgroundTransparency = 1
             return lbl
         end
 
         local TxtTime = CreateTxt("  ⏳ 00:00:00", UDim2.new(0,0,0,0))
-        local TxtFPS  = CreateTxt("  🚀 FPS: --", UDim2.new(0,0,0,30))
-        local TxtMS   = CreateTxt("  📡 MS: --", UDim2.new(0,0,0,60))
+        local TxtFPS  = CreateTxt("  🚀 FPS: --", UDim2.new(0,0,0,26))
+        local TxtMS   = CreateTxt("  📡 MS: --", UDim2.new(0,0,0,52))
 
         local BoostBtn = Instance.new("TextButton", MainFrame)
-        BoostBtn.Size = UDim2.new(0, 170, 0, 35) -- Buton boyu da orantılı olarak biraz kısaltıldı
-        BoostBtn.Position = UDim2.new(0.5, -85, 0, 138) -- Yeni boyuta göre konumlandırıldı
-        BoostBtn.BackgroundColor3 = Color3.fromRGB(160, 0, 0)
+        BoostBtn.Size = UDim2.new(0, 170, 0, 30)
+        BoostBtn.Position = UDim2.new(0.5, -85, 0, 120) -- Yeni boyuta göre konumlandırıldı
+        BoostBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         BoostBtn.Text = "FPS BOOST"
-        BoostBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        BoostBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
         BoostBtn.Font = Enum.Font.GothamBold
-        BoostBtn.TextSize = 14
+        BoostBtn.TextSize = 13
         Instance.new("UICorner", BoostBtn).CornerRadius = UDim.new(0, 6)
 
         local isMinimized = false
         ToggleBtn.MouseButton1Click:Connect(function()
             isMinimized = not isMinimized
-            local targetSize = isMinimized and UDim2.new(0, 190, 0, 40) or UDim2.new(0, 190, 0, 185)
+            local targetSize = isMinimized and UDim2.new(0, 190, 0, 35) or UDim2.new(0, 190, 0, 160)
             
             TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = targetSize}):Play()
             
@@ -2682,11 +2682,11 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         end)
 
         BoostBtn.MouseButton1Down:Connect(function()
-            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 160, 0, 33)}):Play()
+            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 160, 0, 28)}):Play()
         end)
 
         BoostBtn.MouseButton1Up:Connect(function()
-            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 170, 0, 35)}):Play()
+            TweenService:Create(BoostBtn, TweenInfo.new(0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(0, 170, 0, 30)}):Play()
             for _, v in pairs(workspace:GetDescendants()) do
                 if v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Fire") or v:IsA("Smoke") then v:Destroy() end
             end
