@@ -2608,8 +2608,9 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         ScreenGui.Name = "Syniox_GUI"
 
         local MainFrame = Instance.new("Frame", ScreenGui)
-        MainFrame.Size = UDim2.new(0, 220, 0, 140) -- Daha kalın (geniş) ve daha kısa yapıldı
-        MainFrame.Position = UDim2.new(0.5, -110, 0.5, -70) -- Doğrudan ortada başlayacak şekilde ayarlandı
+        MainFrame.Size = UDim2.new(0, 220, 0, 140) -- Kalın ve kısa boyut
+        -- Çark simgesinin hemen altında, sağ üst tarafta konumlandırıldı
+        MainFrame.Position = UDim2.new(1, -235, 0, 85)
         MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
         MainFrame.Active = true
         MainFrame.Draggable = true
@@ -2637,7 +2638,7 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         Instance.new("UICorner", ToggleBtn).CornerRadius = UDim.new(0, 6)
 
         local StatContainer = Instance.new("Frame", MainFrame)
-        StatContainer.Size = UDim2.new(1, -20, 0, 70) -- İç kutu yeni boyuta uyarlandı
+        StatContainer.Size = UDim2.new(1, -20, 0, 70)
         StatContainer.Position = UDim2.new(0, 10, 0, 35)
         StatContainer.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
         Instance.new("UICorner", StatContainer).CornerRadius = UDim.new(0, 6)
@@ -2660,8 +2661,8 @@ Misc:AddSwitch("⏳ Anti Afk", function(Value)
         local TxtMS   = CreateTxt("  📡 MS: --", UDim2.new(0,0,0,46))
 
         local BoostBtn = Instance.new("TextButton", MainFrame)
-        BoostBtn.Size = UDim2.new(0, 200, 0, 26) -- Kalınlığa göre buton genişletildi
-        BoostBtn.Position = UDim2.new(0.5, -100, 0, 108) -- Konumu alt kısma sabitlendi
+        BoostBtn.Size = UDim2.new(0, 200, 0, 26)
+        BoostBtn.Position = UDim2.new(0.5, -100, 0, 108)
         BoostBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         BoostBtn.Text = "FPS BOOST"
         BoostBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
