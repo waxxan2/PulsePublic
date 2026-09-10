@@ -2162,6 +2162,8 @@ autoEquipTools:AddSwitch("Fast Tools", function(p46)
   end
 end, "Acelera todas las herramientas")
 
+local GymTab = window:AddTab("Gym")
+
 
 local teleport = window:AddTab("Teleport")
 
