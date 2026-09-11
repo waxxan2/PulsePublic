@@ -20,18 +20,18 @@ _G.displayName = displayName
 
 local window = library:AddWindow("KRYVEX Hub Public | Muscle Legends || Hello - " .. displayName, {
     title_bar = {
-        Color3.fromRGB(15, 23, 42),
-        Color3.fromRGB(10, 15, 30),
-        Color3.fromRGB(5, 8, 20),
+        Color3.fromRGB(90, 25, 25),
+        Color3.fromRGB(70, 20, 20),
+        Color3.fromRGB(50, 15, 15),
     },
     title_bar_transparency = 0.1,
     background = {
-        Color3.fromRGB(15, 23, 42),
-        Color3.fromRGB(10, 15, 30),
-        Color3.fromRGB(5, 8, 20)
+        Color3.fromRGB(90, 25, 25),
+        Color3.fromRGB(70, 20, 20),
+        Color3.fromRGB(50, 15, 15)
     },
     background_transparency = 0.1,
-    main_color = Color3.fromRGB(15, 23, 42),
+    main_color = Color3.fromRGB(255, 75, 75),
     min_size = Vector2.new(430, 290),
     can_resize = true
 })
