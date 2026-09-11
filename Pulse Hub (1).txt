@@ -18,7 +18,7 @@ _G.player = player
 local displayName = player.DisplayName
 _G.displayName = displayName
 
-local window = library:AddWindow("Pulse Hub Public | Muscle Legends || Hello - " .. displayName, {
+local window = library:AddWindow("KRYVEX Hub Public | Muscle Legends || Hello - " .. displayName, {
     title_bar = {
         Color3.fromRGB(15, 23, 42),
         Color3.fromRGB(10, 15, 30),
@@ -2677,7 +2677,7 @@ end)
 
 local credits = window:AddTab("Credits")
 
-local title = credits:AddLabel("🔥 PULSE HUB V1")
+local title = credits:AddLabel("🔥 KRYVEX HUB V1")
 title.TextColor3 = Color3.fromRGB(255, 215, 0)
 
 local dev = credits:AddLabel("👤 Developer: WOZZY")
